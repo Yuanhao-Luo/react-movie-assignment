@@ -22,7 +22,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -84,6 +84,36 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           <li key={pc.name}>
             <Link to={`/companies/${pc.id}`}>
               <Chip label={pc.name} sx={{...chip}} />
+            </Link>
+          </li>
+        ))}
+      </Paper>
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Cast" sx={{...chip}} color="primary" />
+        </li>
+        {credits.cast.map((c) => (
+          <li key={c.name}>
+            <Link to={`/`}>
+              <Chip label={c.name} sx={{...chip}} />
+            </Link>
+          </li>
+        ))}
+      </Paper>
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Crew" sx={{...chip}} color="primary" />
+        </li>
+        {credits.crew.map((c) => (
+          <li key={c.name}>
+            <Link to={`/`}>
+              <Chip label={c.name} sx={{...chip}} />
             </Link>
           </li>
         ))}
