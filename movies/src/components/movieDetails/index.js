@@ -10,6 +10,11 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import { Link } from "react-router-dom";
 import MovieReviews from "../movieReviews"
+import MovieList from "../movieList";
+import AddToFavoritesIcon from '../cardIcons/addToFavorites'
+import Grid from "@mui/material/Grid";
+
+
 
 
 const root = {
@@ -22,7 +27,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
+const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -95,7 +100,7 @@ const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
         <li>
           <Chip label="Cast" sx={{...chip}} color="primary" />
         </li>
-        {credits.cast.map((c) => (
+        {cast.map((c) => (
           <li key={c.name}>
             <Link to={`/`}>
               <Chip label={c.name} sx={{...chip}} />
@@ -110,14 +115,24 @@ const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
         <li>
           <Chip label="Crew" sx={{...chip}} color="primary" />
         </li>
-        {credits.crew.map((c) => (
-          <li key={c.name}>
+        {crew.map((c) => (
+          <li key={c.name.concat(c.department)}>
             <Link to={`/`}>
               <Chip label={c.name} sx={{...chip}} />
             </Link>
           </li>
         ))}
       </Paper>
+      <Paper>
+        <Grid item container spacing={4}>
+          <MovieList movies={similar}       
+            action={(movie) => {
+            return <AddToFavoritesIcon movie={movie} />
+          }}></MovieList>
+        </Grid>
+      </Paper>
+
+      
       <Fab
         color="secondary"
         variant="extended"

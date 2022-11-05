@@ -6,8 +6,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 
 const TemplateDetailPage = ({ images, title, subtitle, link, children }) => {
 
-    console.log(images)
-
   return (
     <>
       <DetailHeader title={title} subtitle={subtitle} link={link} />
