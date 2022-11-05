@@ -32,8 +32,8 @@ describe("Company", () => {
 
         })
         it("navigates to the production company details page and change browser URL", () => {
-            cy.get("li").eq(-1).click();
-            cy.url().should("include", `/companies/${movie.production_companies[3].id}`);
+            cy.get("li").contains(movie.production_companies[1].name).click();
+            cy.url().should("include", `/companies/${movie.production_companies[1].id}`);
         });
     });
 
