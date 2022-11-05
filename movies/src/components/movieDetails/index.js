@@ -8,6 +8,7 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
+import { Link } from "react-router-dom";
 import MovieReviews from "../movieReviews"
 
 
@@ -69,6 +70,21 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         {movie.production_countries.map((pc) => (
           <li key={pc.iso_3166_1}>
             <Chip label={pc.iso_3166_1} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="production companies" sx={{...chip}} color="primary" />
+        </li>
+        {movie.production_companies.map((pc) => (
+          <li key={pc.name}>
+            <Link to={`/companies/${pc.id}`}>
+              <Chip label={pc.name} sx={{...chip}} />
+            </Link>
           </li>
         ))}
       </Paper>

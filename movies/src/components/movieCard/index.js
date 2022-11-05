@@ -26,9 +26,6 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
-  console.log(mustWatch)
-  console.log(favorites)
-
   if (mustWatch.find((id) => id === movie.id)){
     movie.mustWatch = true;
   } else {
