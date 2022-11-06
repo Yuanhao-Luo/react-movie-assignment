@@ -43,5 +43,14 @@ describe("The favourites feature", () => {
                 .find("p")
                 .contains(movies[3].title);
         });
+        it("favourite can be deleted", () => {
+            cy.get("button[aria-label='remove from favorites']").eq(0).click();
+            cy.get("p").contains(movies[1].title).should("not.exist");
+        })
+        it("jump to write review page", () => {
+            cy.get("a[href='/reviews/form']").eq(0).click();
+            cy.url().should("include", "/reviews/form");
+            cy.get("h3").contains(movies[1].title);
+        })
     });
 });
