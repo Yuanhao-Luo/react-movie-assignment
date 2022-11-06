@@ -1,6 +1,7 @@
 let movies;
 let movieCredits;
-let movie
+let movie;
+let movieSimilar;
 
 describe("Movie Detail", () => {
     before(() => {
@@ -15,7 +16,7 @@ describe("Movie Detail", () => {
             });
     });
     beforeEach(() => {
-        // cy.visit(`/movies/${movies[2].id}`);
+        cy.visit(`/movies/${movies[2].id}`);
     });
     describe("The information in the movie detail page", () => {
         before(() => {
@@ -26,6 +27,20 @@ describe("Movie Detail", () => {
                 .then((movieDetails) => {
                     movie = movieDetails;
                 });
+        });
+        beforeEach(() => {
+            // cy.visit(`/movies/${movies[2].id}`);
+        })
+        it("production companies are correct", () => {
+            cy.wait(500)
+            movie.production_companies.map((pc) => {
+                cy.get("li").contains(pc.name);
+            })
+        });
+
+    });
+    describe("The credit of this movie is correct", () => {
+        before(() => {
             cy.request(
                     `https://api.themoviedb.org/3/movie/${movies[2].id}/credits?api_key=${Cypress.env("TMDB_KEY")}`
                 )
@@ -33,25 +48,36 @@ describe("Movie Detail", () => {
                 .then((credits) => {
                     movieCredits = credits;
                 });
-        });
-        beforeEach(() => {
-            cy.visit(`/movies/${movies[2].id}`);
         })
-        it("production companies are correct", () => {
-            movie.production_companies.map((pc) => {
-                cy.get("li").contains(pc.name);
-            })
-        });
-        it("casts are correct", () => {
+        it("Each name of cast in this page is same as the movie", () => {
+            cy.wait(500)
             movieCredits.cast.map((c) => {
                 cy.get("li").contains(c.name);
             })
         });
-        it("crews are correct", () => {
+        it("Each name of crew in this page is same as the movie", () => {
+            cy.wait(500)
             movieCredits.crew.map((c) => {
                 cy.get("li").contains(c.name);
             })
+        });
+    })
+    describe("The similar movie is correct", () => {
+        before(() => {
+            cy.request(
+                    `https://api.themoviedb.org/3/movie/${movies[2].id}/similar?api_key=${Cypress.env("TMDB_KEY")}&language=en-US&page=1`
+                )
+                .its("body")
+                .then((similar) => {
+                    movieSimilar = similar;
+                });
         })
-    });
+        it("Each name of similar movie in this page is correct", () => {
+            cy.wait(500)
+            movieSimilar.results.map((s) => {
+                cy.get("p").contains(s.title);
+            })
 
+        });
+    })
 });

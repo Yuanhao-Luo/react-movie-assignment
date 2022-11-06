@@ -28,7 +28,7 @@ const MoviePage = (props) => {
 
   var start = new Date().getTime();
   while (true) {
-    if (new Date().getTime() - start > 200) {
+    if (new Date().getTime() - start > 500) {
       break;
     }
   }
