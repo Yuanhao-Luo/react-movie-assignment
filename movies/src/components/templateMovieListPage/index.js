@@ -9,9 +9,11 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
 
+  console.log(movies)
   let displayedMovies = movies
     .filter((m) => {
-      return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+      let tmp = m.title ? m.title : m.name;
+      return tmp.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;

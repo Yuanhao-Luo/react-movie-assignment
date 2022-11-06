@@ -20,6 +20,8 @@ export default function MovieCard({ movie, action }) {
   const { favorites } = useContext(MoviesContext);
   const { mustWatch } = useContext(MoviesContext);
 
+  const isMovie = Boolean(movie.title);
+
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
@@ -65,7 +67,7 @@ export default function MovieCard({ movie, action }) {
         }
         title={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {isMovie ? movie.title : movie.name}{" "}
           </Typography>
         }
       />
@@ -79,12 +81,19 @@ export default function MovieCard({ movie, action }) {
       />
       <CardContent>
         <Grid container>
-          <Grid item xs={6}>
+          {isMovie ? <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
               {movie.release_date}
             </Typography>
-          </Grid>
+          </Grid> :
+          null}
+          {/* <Grid item xs={6}>
+            <Typography variant="h6" component="p">
+              <CalendarIcon fontSize="small" />
+              {movie.release_date}
+            </Typography>
+          </Grid> */}
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
@@ -93,14 +102,16 @@ export default function MovieCard({ movie, action }) {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      {isMovie ? <CardActions disableSpacing>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-      </CardActions>
+      </CardActions> :
+      null}
+      
     </Card>
   );
 }
