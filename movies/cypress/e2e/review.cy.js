@@ -28,7 +28,7 @@ describe("Reviews", () => {
             cy.wait(1000)
             cy.get("button").contains("Reviews").click()
             cy.get("a").contains("Full Review").eq(0).click();
-            cy.wait(1000)
+            cy.wait(3000)
             cy.url().should("include", "reviews");
         })
     })
@@ -51,7 +51,7 @@ describe("Reviews", () => {
             cy.wait(1000)
             cy.get("button").contains("Reviews").click()
             cy.get("a").contains("Full Review").eq(0).click();
-            cy.wait(1000)
+            cy.wait(3000)
             cy.get("p").contains(movieReviews[0].content.substring(0, 10))
 
         })
