@@ -9,32 +9,36 @@ import PageTemplate from "../components/templateDetailPage";
 
 const MoviePage = (props) => {
   const { id } = useParams();
-  const { data: image } = useQuery(
+  const { data: image, isLoading: il1 } = useQuery(
     ["images", { id: id }],
     getMovieImages
   );
-  const { data: credits } = useQuery(
+  const { data: credits, isLoading: il2 } = useQuery(
     ["credits", { id: id }],
     getCredits
   );
-  const { data: similar } = useQuery(
+  const { data: similar, isLoading: il3 } = useQuery(
     ["similar", {id: id}],
     getSimilar
   )
-  const { data: movie, error, isLoading, isError } = useQuery(
+  const { data: movie, error, isLoading: il4, isError } = useQuery(
     ["movie", { id: id }],
     getMovie
   );
 
-  var start = new Date().getTime();
-  while (true) {
-    if (new Date().getTime() - start > 500) {
-      break;
-    }
-  }
+  // var start = new Date().getTime();
+  // while (true) {
+  //   if (new Date().getTime() - start > 1000) {
+  //     break;
+  //   }
+  // }
+
+  // while(il1||il2||il3||il4){
+  //   return <Spinner />
+  // };
 
 
-  if (isLoading) {
+  if (il1||il2||il3||il4) {
     return <Spinner />;
   }
 
