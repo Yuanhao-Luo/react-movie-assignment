@@ -2,12 +2,19 @@ import React from "react";
 import { getPopular } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
+import { useLocation } from 'react-router-dom';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const PopularPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('popular', getPopular)
+  function useQ() {
+    return new URLSearchParams(useLocation().search);
+  }
+  const query = useQ()
+  const page = query.get('page') 
+
+  const {  data, error, isLoading, isError }  = useQuery(['popular', {page: page}], getPopular)
 
   
   if (isLoading) {
@@ -18,9 +25,8 @@ const PopularPage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
+  const totalPage = data.total_pages;
 
-  console.log("ppppp")
-  console.log(movies)
 
   // Redundant, but necessary to avoid app crashing.
 //   const favorites = movies.filter(m => m.favorite)
@@ -34,6 +40,8 @@ const PopularPage = (props) => {
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
+      page={page}
+      totalPage = {totalPage}
     />
   );
 };

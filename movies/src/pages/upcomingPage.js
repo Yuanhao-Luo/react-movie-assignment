@@ -2,12 +2,19 @@ import React from "react";
 import { getUpcoming } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
+import { useLocation } from 'react-router-dom';
 import Spinner from '../components/spinner';
 import AddToPlayList from '../components/cardIcons/addToPlayList'
 
 const UpcomingPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('upcoming', getUpcoming)
+  function useQ() {
+    return new URLSearchParams(useLocation().search);
+  }
+  const query = useQ()
+  const page = query.get('page') 
+
+  const {  data, error, isLoading, isError }  = useQuery(['upcoming', {page: page}], getUpcoming)
 
   
   if (isLoading) {
@@ -18,6 +25,7 @@ const UpcomingPage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
+  const totalPage = data.total_pages;
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
@@ -31,6 +39,8 @@ const UpcomingPage = (props) => {
       action={(movie) => {
         return <AddToPlayList movie={movie} />
       }}
+      page={page}
+      totalPage = {totalPage}
     />
   );
 };
