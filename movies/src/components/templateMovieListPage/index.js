@@ -72,7 +72,7 @@ function MovieListPageTemplate({ movies, title, action, page, totalPage }) {
         </Grid>
       </Grid>
       <Grid sx={{ display: "flex", justifyContent: 'center'}}>
-        <Pagination hidePrevButton hideNextButton count={totalPage} page={parseInt(page)} onChange={handlePagination}>
+        <Pagination hidePrevButton hideNextButton count={totalPage > 500 ? 500 : totalPage} page={parseInt(page)} onChange={handlePagination}>
 
         </Pagination>
       </Grid>
