@@ -90,7 +90,7 @@ const Login = (props) => {
                 onChange={handlePassword}
             />
             {error &&
-                <DialogContentText color="red">
+                <DialogContentText id="error_info" color="red">
                     {error}
                 </DialogContentText>
             }
@@ -98,8 +98,8 @@ const Login = (props) => {
         </DialogContent>
 
         <DialogActions>
-            <Button onClick={handleLogin}>Login</Button>
-            <Button onClick={handleRegister}>Register</Button>
+            <Button id="Login" onClick={handleLogin}>Login</Button>
+            <Button id="Register" onClick={handleRegister}>Register</Button>
         </DialogActions>
         </>
         

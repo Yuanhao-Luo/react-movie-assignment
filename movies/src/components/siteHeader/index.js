@@ -64,7 +64,8 @@ const SiteHeader = () => {
             <Button  
               variant="text" 
               color="inherit" 
-              onClick={() => setDrawerOpen(true)} 
+              onClick={() => setDrawerOpen(true)}
+              id="LoginButton" 
             >
               Login
               <LoginIcon></LoginIcon>
@@ -73,6 +74,7 @@ const SiteHeader = () => {
             variant="text" 
             color="inherit" 
             onClick={handleLogout} 
+            id="LogoutButton"
           >
             <LogoutIcon></LogoutIcon>
           </Button>
@@ -133,7 +135,7 @@ const SiteHeader = () => {
         </Toolbar>
       </AppBar>
       <Offset />
-      <Dialog open={drawerOpen} onClose={() => setDrawerOpen(false) }>
+      <Dialog id="LoginPage" open={drawerOpen} onClose={() => setDrawerOpen(false) }>
         <Login action={setDrawerOpen}></Login>
       </Dialog>
     </>
