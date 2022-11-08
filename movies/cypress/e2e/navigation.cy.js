@@ -38,7 +38,7 @@ describe("Navigation", () => {
             },
             () => {
                 it("navigation via the dropdown menu", () => {
-                    cy.get("header").find("button").click();
+                    cy.get("header").find("button").eq(1).click();
                     cy.get("li").contains('Favorites').click();
                     cy.url().should("include", `/favorites`);
                     cy.get("li").contains('Home').click();
