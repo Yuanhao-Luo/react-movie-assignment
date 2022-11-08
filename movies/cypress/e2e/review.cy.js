@@ -27,8 +27,8 @@ describe("Reviews", () => {
         it("Jump to full review page after chlicking full review", () => {
             cy.wait(1000)
             cy.get("button").contains("Reviews").click()
-            cy.get("a").contains("Full Review").eq(0).click();
             cy.wait(3000)
+            cy.get("a").contains("Full Review").eq(0).click();
             cy.url().should("include", "reviews");
         })
     })
@@ -50,8 +50,8 @@ describe("Reviews", () => {
         it("The content of review in full review page is correct", () => {
             cy.wait(1000)
             cy.get("button").contains("Reviews").click()
-            cy.get("a").contains("Full Review").eq(0).click();
             cy.wait(3000)
+            cy.get("a").contains("Full Review").eq(0).click();
             cy.get("p").contains(movieReviews[0].content.substring(0, 10))
 
         })
