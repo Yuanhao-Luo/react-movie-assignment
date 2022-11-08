@@ -16,7 +16,7 @@ function MovieListPageTemplate({ movies, title, action, page, totalPage }) {
   }
 
   const languages = ["All"];
-  movies.map((l) => {
+  movies.foreach((l) => {
     if(!languages.includes(l.original_language)){
       languages.push(l.original_language)
     }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Login from "../login";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,10 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Dialog from "@mui/material/Dialog";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-const SiteHeader = ({ history }) => {
+const SiteHeader = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -47,6 +50,9 @@ const SiteHeader = ({ history }) => {
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
+          <Button color="inherit" onClick={() => setDrawerOpen(true)}>
+            Login
+          </Button>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
           </Typography>
@@ -102,6 +108,9 @@ const SiteHeader = ({ history }) => {
         </Toolbar>
       </AppBar>
       <Offset />
+      <Dialog open={drawerOpen} onClose={() => setDrawerOpen(false) }>
+        <Login></Login>
+      </Dialog>
     </>
   );
 };
