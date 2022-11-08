@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
 import Login from "../login";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,13 +14,18 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Dialog from "@mui/material/Dialog";
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const {user, setUser} = useContext(MoviesContext);
   const open = Boolean(anchorEl);
+
+  console.log(user)
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,6 +49,10 @@ const SiteHeader = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = (e) => {
+    setUser(null)
+  }
+
   return (
     <>
       <AppBar position="fixed" color="secondary">
@@ -50,9 +60,24 @@ const SiteHeader = () => {
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
-          <Button color="inherit" onClick={() => setDrawerOpen(true)}>
-            Login
+          {!user ? 
+            <Button  
+              variant="text" 
+              color="inherit" 
+              onClick={() => setDrawerOpen(true)} 
+            >
+              Login
+              <LoginIcon></LoginIcon>
+            </Button> : 
+            <Button  
+            variant="text" 
+            color="inherit" 
+            onClick={handleLogout} 
+          >
+            <LogoutIcon></LogoutIcon>
           </Button>
+          }
+          
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
           </Typography>
@@ -109,7 +134,7 @@ const SiteHeader = () => {
       </AppBar>
       <Offset />
       <Dialog open={drawerOpen} onClose={() => setDrawerOpen(false) }>
-        <Login></Login>
+        <Login action={setDrawerOpen}></Login>
       </Dialog>
     </>
   );

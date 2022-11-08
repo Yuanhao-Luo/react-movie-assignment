@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseApp } from "../../firebase/FirebaseApp";
 import Button from '@mui/material/Button';
@@ -6,10 +7,13 @@ import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import DialogContentText from '@mui/material/DialogContentText';
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const {setUser} = useContext(MoviesContext);
 
     const app = FirebaseApp();
     const auth = getAuth(app);
@@ -18,13 +22,17 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
-            // const user = userCredential.user;
+            const user = userCredential.user;
             console.log("login")
+            setUser(user)
+            setError('')
+            props.action(false)
             // ...
         })
         .catch((error) => {
             // const errorCode = error.code;
-            // const errorMessage = error.message;
+            const errorMessage = error.message.substring(9);
+            setError(errorMessage)
         });
     }
 
@@ -32,13 +40,18 @@ const Login = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
-            // const user = userCredential.user;
+            const user = userCredential.user;
+            setUser(user)
+            setError('')
+            props.action(false)
             // ...
         })
         .catch((error) => {
             // const errorCode = error.code;
-            // const errorMessage = error.message;
+            const errorMessage = error.message.substring(9);
+            console.log(errorMessage)
             // ..
+            setError(errorMessage)
         });
     }
 
@@ -76,7 +89,14 @@ const Login = () => {
                 variant="standard"
                 onChange={handlePassword}
             />
+            {error &&
+                <DialogContentText color="red">
+                    {error}
+                </DialogContentText>
+            }
+            
         </DialogContent>
+
         <DialogActions>
             <Button onClick={handleLogin}>Login</Button>
             <Button onClick={handleRegister}>Register</Button>
