@@ -1,5 +1,7 @@
 let movies;
 let movieId; // Enola Holmes movie id
+let email = "123456@test.com";
+let password = "123456"
 
 describe("Navigation", () => {
     before(() => {
@@ -15,6 +17,10 @@ describe("Navigation", () => {
     });
     beforeEach(() => {
         cy.visit("/");
+        cy.get("#LoginButton").click();
+        cy.get("#email").clear().type(email);
+        cy.get("#password").clear().type(password);
+        cy.get("#Login").click();
     });
     describe("From the home page to a movie's details", () => {
         it("navigates to the movie details page and change browser URL", () => {
@@ -25,6 +31,7 @@ describe("Navigation", () => {
     describe("The site header", () => {
         describe("when the viewport is desktop scale", () => {
             it("navigation via the links", () => {
+                cy.wait(500)
                 cy.get("button").contains("Favorites").click();
                 cy.url().should("include", `/favorites`);
                 cy.get("button").contains("Home").click();

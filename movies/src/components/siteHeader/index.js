@@ -25,8 +25,6 @@ const SiteHeader = () => {
   const {user, setUser} = useContext(MoviesContext);
   const open = Boolean(anchorEl);
 
-  console.log(user)
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -34,12 +32,15 @@ const SiteHeader = () => {
 
   const menuOptions = [
     { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Now Playing", path: "/movies/now_playing" },
     { label: "Popular", path: "/movies/popular" },
     { label: "TV", path: "/tv/top_rated" },
   ];
+
+  if(user !== null){
+    menuOptions.push({ label: "Favorites", path: "/movies/favorites" });
+  }
 
   const handleMenuSelect = (pageURL) => {
     navigate(pageURL, { replace: true });
@@ -60,6 +61,11 @@ const SiteHeader = () => {
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
+          
+          
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            All you ever wanted to know about Movies!
+          </Typography>
           {!user ? 
             <Button  
               variant="text" 
@@ -79,10 +85,6 @@ const SiteHeader = () => {
             <LogoutIcon></LogoutIcon>
           </Button>
           }
-          
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
-          </Typography>
             {isMobile ? (
               <>
                 <IconButton
@@ -130,6 +132,7 @@ const SiteHeader = () => {
                     {opt.label}
                   </Button>
                 ))}
+
               </>
             )}
         </Toolbar>

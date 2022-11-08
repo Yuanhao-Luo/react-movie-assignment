@@ -19,6 +19,7 @@ import img from '../../images/film-poster-placeholder.png'
 export default function MovieCard({ movie, action }) {
   const { favorites } = useContext(MoviesContext);
   const { mustWatch } = useContext(MoviesContext);
+  const { user } = useContext(MoviesContext);
 
   const isMovie = Boolean(movie.title);
 
@@ -102,15 +103,15 @@ export default function MovieCard({ movie, action }) {
           </Grid>
         </Grid>
       </CardContent>
-      {isMovie ? <CardActions disableSpacing>
+      {isMovie && user !== null && <CardActions disableSpacing>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-      </CardActions> :
-      null}
+      </CardActions>
+      }
       
     </Card>
   );

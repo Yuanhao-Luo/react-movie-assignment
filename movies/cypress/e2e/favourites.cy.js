@@ -1,5 +1,7 @@
 let movies;
 const movieId = 497582; // Enola Holmes movie id
+let email = "123456@test.com";
+let password = "123456"
 
 describe("The favourites feature", () => {
     before(() => {
@@ -15,6 +17,10 @@ describe("The favourites feature", () => {
     });
     beforeEach(() => {
         cy.visit("/");
+        cy.get("#LoginButton").click();
+        cy.get("#email").clear().type(email);
+        cy.get("#password").clear().type(password);
+        cy.get("#Login").click();
     });
 
     describe("Selecting favourites", () => {

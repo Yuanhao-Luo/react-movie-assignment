@@ -1,5 +1,7 @@
 let movies;
 let moviesUpcoming;
+let email = "123456@test.com";
+let password = "123456"
 
 describe("Upcoming", () => {
     before(() => {
@@ -34,6 +36,10 @@ describe("Upcoming", () => {
         })
         beforeEach(() => {
             cy.visit(`/movies/upcoming`);
+            cy.get("#LoginButton").click();
+            cy.get("#email").clear().type(email);
+            cy.get("#password").clear().type(password);
+            cy.get("#Login").click();
         })
         it("The titles of movie card are upcoming movie titles", () => {
             cy.get("p").contains(moviesUpcoming[3].title)
@@ -42,6 +48,10 @@ describe("Upcoming", () => {
     describe("Must watch function", () => {
         beforeEach(() => {
             cy.visit(`/movies/upcoming`);
+            cy.get("#LoginButton").click();
+            cy.get("#email").clear().type(email);
+            cy.get("#password").clear().type(password);
+            cy.get("#Login").click();
         })
         it("The movie will add to must watch list after click add list button", () => {
             cy.get("button[aria-label='add to MustWatch']").eq(3).click();
