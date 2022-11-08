@@ -14,7 +14,7 @@ describe("Reviews", () => {
             });
     });
     beforeEach(() => {
-        cy.visit(`/movies/${movies[3].id}`);
+        cy.visit(`/movies/${movies[1].id}`);
     });
     describe("Navigate to review page", () => {
         it("Show reviews after clicking review button in movie detail page", () => {
@@ -35,7 +35,7 @@ describe("Reviews", () => {
     describe("The content of review is correct", () => {
         before(() => {
             cy.request(
-                    `https://api.themoviedb.org/3/movie/${movies[3].id}/reviews?api_key=${Cypress.env("TMDB_KEY")}`
+                    `https://api.themoviedb.org/3/movie/${movies[1].id}/reviews?api_key=${Cypress.env("TMDB_KEY")}`
                 )
                 .its("body")
                 .then((review) => {
