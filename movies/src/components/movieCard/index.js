@@ -67,7 +67,7 @@ export default function MovieCard({ movie, action }) {
           whichAvatar()
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h5" component="p" name="movie_title">
             {isMovie ? movie.title : movie.name}{" "}
           </Typography>
         }

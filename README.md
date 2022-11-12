@@ -6,28 +6,24 @@ Name: Yuanhao Luo
 
 ## Overview.
 
-[A brief statement on the content of this repository.]
+This is a web application to display many movies and their information for movie fan. The movie information comes from TMDB. The project is based on React and Material UI, tested by Cypress and authenicated though Firebase.
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
 
 + An extra filter
 + A new parameterised URL(Production Company)
 + Pagination
 + Firebase authentication
-+ etc
++ Full caching support
++ New Material UI components
++ Create a generic detail page so that I can easily add detail pages not only movie and company detail page
 
 ## Setup requirements.
-
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
 
 install firebase
 
 ## API endpoints.
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
-e.g.
 + Now playing list of movies - /movies/now_playing
 + Popular list of movies - /movies/popular
 + Top rated list of TV - /tv/top_rated
@@ -37,21 +33,17 @@ e.g.
 
 ## Routing.
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
 + /companies/:id - displays a production company.
 + /movies/now_playing - displays a list of now playing movies.
 + /movies/popular - displays a list of popular movies.
 + /tv/top_rated - displays a list of top rated tv.
-
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
 Movie detail page and favourite movie function require authentication.
 Listing movies or tv is public.
 
 ## Independent learning (If relevant).
 
+How to use Firebase for authentication. I followed the instruction in their website.
+Though useLocation() you can get the URL of persent page. And it also help you divide URL into different parts.
+Some new Material UI components such as Dialog, Pagination from official document.
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).

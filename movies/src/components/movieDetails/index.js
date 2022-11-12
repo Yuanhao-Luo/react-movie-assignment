@@ -86,7 +86,7 @@ const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
           <Chip label="production companies" sx={{...chip}} color="primary" />
         </li>
         {movie.production_companies.map((pc) => (
-          <li key={pc.name}>
+          <li key={pc.name} name="production_company">
             <Link to={`/companies/${pc.id}`}>
               <Chip label={pc.name} sx={{...chip}} />
             </Link>
@@ -101,7 +101,7 @@ const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
           <Chip label="Cast" sx={{...chip}} color="primary" />
         </li>
         {cast.map((c) => (
-          <li key={c.name}>
+          <li key={c.name} name="cast">
             <Link to={`/`}>
               <Chip label={c.name} sx={{...chip}} />
             </Link>
@@ -116,7 +116,7 @@ const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
           <Chip label="Crew" sx={{...chip}} color="primary" />
         </li>
         {crew.map((c) => (
-          <li key={c.name.concat(c.department)}>
+          <li key={c.name.concat(c.department)} name="crew">
             <Link to={`/`}>
               <Chip label={c.name} sx={{...chip}} />
             </Link>
@@ -137,6 +137,7 @@ const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
+        id="ReviewButton"
         sx={{
           position: 'fixed',
           bottom: '1em',

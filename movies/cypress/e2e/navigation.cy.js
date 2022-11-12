@@ -31,10 +31,9 @@ describe("Navigation", () => {
     describe("The site header", () => {
         describe("when the viewport is desktop scale", () => {
             it("navigation via the links", () => {
-                cy.wait(500)
-                cy.get("button").contains("Favorites").click();
+                cy.get("#Favorites").click();
                 cy.url().should("include", `/favorites`);
-                cy.get("button").contains("Home").click();
+                cy.get("#Home").click();
                 cy.url().should("include", `/`);
             });
         });

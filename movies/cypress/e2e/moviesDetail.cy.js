@@ -32,9 +32,9 @@ describe("Movie Detail", () => {
             // cy.visit(`/movies/${movies[2].id}`);
         })
         it("production companies are correct", () => {
-            cy.wait(500)
             movie.production_companies.map((pc) => {
-                cy.get("li").contains(pc.name);
+                cy.get("li[name='production_company']").contains(pc.name)
+                    // cy.get("li").contains(pc.name);
             })
         });
 
@@ -50,15 +50,17 @@ describe("Movie Detail", () => {
                 });
         })
         it("Each name of cast in this page is same as the movie", () => {
-            cy.wait(500)
+            // cy.wait(500)
             movieCredits.cast.map((c) => {
-                cy.get("li").contains(c.name);
+                cy.get("li[name='cast']").contains(c.name);
+                // cy.get("li").contains(c.name);
             })
         });
         it("Each name of crew in this page is same as the movie", () => {
-            cy.wait(500)
+            // cy.wait(500)
             movieCredits.crew.map((c) => {
-                cy.get("li").contains(c.name);
+                cy.get("li[name='crew']").contains(c.name);
+                // cy.get("li").contains(c.name);
             })
         });
     })
@@ -73,9 +75,10 @@ describe("Movie Detail", () => {
                 });
         })
         it("Each name of similar movie in this page is correct", () => {
-            cy.wait(500)
+            // cy.wait(500)
             movieSimilar.results.map((s) => {
-                cy.get("p").contains(s.title);
+                cy.get("p[name='movie_title']").contains(s.title);
+                // cy.get("p").contains(s.title);
             })
 
         });

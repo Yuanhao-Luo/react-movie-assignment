@@ -7,7 +7,6 @@ import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const HomePage = (props) => {
-
   function useQ() {
     return new URLSearchParams(useLocation().search);
   }

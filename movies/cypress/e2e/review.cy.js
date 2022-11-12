@@ -18,16 +18,13 @@ describe("Reviews", () => {
     });
     describe("Navigate to review page", () => {
         it("Show reviews after clicking review button in movie detail page", () => {
-            cy.wait(1000)
-            cy.get("button").contains("Reviews").click()
+            cy.get("#ReviewButton").click()
             cy.get("th").contains("Author");
             cy.get("th").contains("Excerpt");
             cy.get("th").contains("More");
         })
         it("Jump to full review page after chlicking full review", () => {
-            cy.wait(1000)
-            cy.get("button").contains("Reviews").click()
-            cy.wait(3000)
+            cy.get("#ReviewButton").click()
             cy.get("a").contains("Full Review").eq(0).click();
             cy.url().should("include", "reviews");
         })
@@ -43,14 +40,11 @@ describe("Reviews", () => {
                 });
         })
         it("The content of review in excerpt page is correct", () => {
-            cy.wait(1000)
-            cy.get("button").contains("Reviews").click()
+            cy.get("#ReviewButton").click()
             cy.get("td").contains(movieReviews[0].content.substring(0, 10))
         })
         it("The content of review in full review page is correct", () => {
-            cy.wait(1000)
-            cy.get("button").contains("Reviews").click()
-            cy.wait(3000)
+            cy.get("#ReviewButton").click()
             cy.get("a").contains("Full Review").eq(0).click();
             cy.get("p").contains(movieReviews[0].content.substring(0, 10))
 

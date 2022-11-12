@@ -1,7 +1,7 @@
 let email = "123456@test.com";
 let password = "123456"
 let email_r = Math.floor(Math.random() * 1000000).toString().concat("@test.com");
-let password_r = Math.floor(Math.random() * 1000000).toString()
+let password_r = Math.floor(Math.random() * 1000000).toString().concat(Math.floor(Math.random() * 1000000).toString())
 
 describe("Authentication", () => {
     beforeEach(() => {
@@ -18,7 +18,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email);
             cy.get("#password").clear().type(password);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#LogoutButton").click();
             cy.get("#LoginButton")
         })
@@ -31,7 +30,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email);
             cy.get("#password").clear().type(password);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#LogoutButton");
         })
         it("Login with wrong email", () => {
@@ -39,7 +37,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_w);
             cy.get("#password").clear().type(password);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
         it("Login with wrong password", () => {
@@ -47,7 +44,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email);
             cy.get("#password").clear().type(password_w);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
         it("Login with wrong password and email", () => {
@@ -56,7 +52,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_w);
             cy.get("#password").clear().type(password_w);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
         it("do not input an email in email textfield", () => {
@@ -64,7 +59,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_w);
             cy.get("#password").clear().type(password);
             cy.get("#Login").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
     })
@@ -76,7 +70,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_r);
             cy.get("#password").clear().type(password_r);
             cy.get("#Register").click();
-            cy.wait(500)
             cy.get("#LogoutButton");
         })
         it("do not input an email in email textfield", () => {
@@ -84,7 +77,6 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_w);
             cy.get("#password").clear().type(password_r);
             cy.get("#Register").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
         it("the password is less than 6 characters", () => {
@@ -92,14 +84,12 @@ describe("Authentication", () => {
             cy.get("#email").clear().type(email_r);
             cy.get("#password").clear().type(password_w);
             cy.get("#Register").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
         it("input an existed email", () => {
             cy.get("#email").clear().type(email);
             cy.get("#password").clear().type(password_r);
             cy.get("#Register").click();
-            cy.wait(500)
             cy.get("#error_info");
         })
     })

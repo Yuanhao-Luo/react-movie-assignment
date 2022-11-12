@@ -114,6 +114,7 @@ const SiteHeader = () => {
                   {menuOptions.map((opt) => (
                     <MenuItem
                       key={opt.label}
+                      id={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
                     >
                       {opt.label}
@@ -126,6 +127,7 @@ const SiteHeader = () => {
                 {menuOptions.map((opt) => (
                   <Button
                     key={opt.label}
+                    id={opt.label}
                     color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
                   >
