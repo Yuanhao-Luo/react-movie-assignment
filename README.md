@@ -1,5 +1,3 @@
-# react-movie-assignment
-
 # Assignment 1 - ReactJS app.
 
 Name: Yuanhao Luo
