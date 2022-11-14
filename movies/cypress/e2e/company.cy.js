@@ -1,5 +1,4 @@
 let movies;
-let movieId; // Enola Holmes movie id
 let movie
 
 describe("Company", () => {
