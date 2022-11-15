@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -9,10 +9,11 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import { Link } from "react-router-dom";
-import MovieReviews from "../movieReviews"
 import MovieList from "../movieList";
 import AddToFavoritesIcon from '../cardIcons/addToFavorites'
 import Grid from "@mui/material/Grid";
+
+const MovieReviews = lazy(() => import("../movieReviews"))
 
 
 
@@ -148,7 +149,9 @@ const MovieDetails = ({ movie, cast, crew, similar }) => {  // Don't miss this!
         Reviews
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <MovieReviews movie={movie} />
+        <Suspense fallback={<h1>Loading page</h1>}>
+          <MovieReviews movie={movie} />
+        </Suspense>
       </Drawer>
     </>
   );

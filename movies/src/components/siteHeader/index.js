@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, lazy, Suspense } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
-import Login from "../login";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -16,6 +15,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Dialog from "@mui/material/Dialog";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+
+const Login = lazy(() => import("../login"));
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -141,7 +142,9 @@ const SiteHeader = () => {
       </AppBar>
       <Offset />
       <Dialog id="LoginPage" open={drawerOpen} onClose={() => setDrawerOpen(false) }>
-        <Login action={setDrawerOpen}></Login>
+        <Suspense fallback={<h1>Loading page</h1>}>
+          <Login action={setDrawerOpen}></Login>
+        </Suspense>
       </Dialog>
     </>
   );

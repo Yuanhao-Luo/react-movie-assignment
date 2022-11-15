@@ -3,18 +3,18 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes} from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
-import MoviePage from "./pages/movieDetailsPage";
-import UpcomingPage from "./pages/upcomingPage"
-import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
-import MovieReviewPage from "./pages/movieReviewPage";
-import SiteHeader from './components/siteHeader'
-import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
-import CompanyPage from "./pages/companyPage"
-import NowPlayingPage from "./pages/nowPlayingPage";
-import PopularPage from "./pages/popularPage";
-import TopRatedTVPage from "./pages/topRatedTVPage";
+import MoviesContextProvider from "./contexts/moviesContext"
 const HomePage = lazy(() => import("./pages/homePage"));
+const MoviePage = lazy(() => import("./pages/movieDetailsPage"));
+const UpcomingPage = lazy(() => import("./pages/upcomingPage"));
+const FavoriteMoviesPage = lazy(() => import("./pages/favoriteMoviesPage"));
+const MovieReviewPage = lazy(() => import("./pages/movieReviewPage"));
+const SiteHeader = lazy(() => import("./components/siteHeader"));
+const AddMovieReviewPage = lazy(() => import("./pages/addMovieReviewPage"));
+const CompanyPage = lazy(() => import("./pages/companyPage"));
+const NowPlayingPage = lazy(() => import("./pages/nowPlayingPage"));
+const PopularPage = lazy(() => import("./pages/popularPage"));
+const TopRatedTVPage = lazy(() => import("./pages/topRatedTVPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
