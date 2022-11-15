@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/my-app/static/js/main.f71970b3.js",
-    "static/js/812.58277a68.chunk.js": "/my-app/static/js/812.58277a68.chunk.js",
-    "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/my-app/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
-    "static/media/film-poster-placeholder.png": "/my-app/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
-    "index.html": "/my-app/index.html",
-    "main.f71970b3.js.map": "/my-app/static/js/main.f71970b3.js.map",
-    "812.58277a68.chunk.js.map": "/my-app/static/js/812.58277a68.chunk.js.map"
+    "main.js": "/react-movie-assignment/static/js/main.e83f3d2c.js",
+    "static/js/812.58277a68.chunk.js": "/react-movie-assignment/static/js/812.58277a68.chunk.js",
+    "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/react-movie-assignment/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
+    "static/media/film-poster-placeholder.png": "/react-movie-assignment/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
+    "index.html": "/react-movie-assignment/index.html",
+    "main.e83f3d2c.js.map": "/react-movie-assignment/static/js/main.e83f3d2c.js.map",
+    "812.58277a68.chunk.js.map": "/react-movie-assignment/static/js/812.58277a68.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f71970b3.js"
+    "static/js/main.e83f3d2c.js"
   ]
 }
