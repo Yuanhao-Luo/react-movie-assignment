@@ -44,6 +44,7 @@ export default function MovieReviews({ movie }) {
                       review: r,
                       movie: movie,
                   }}
+                  name="FullReview"
                 >
                   Full Review
                 </Link>
