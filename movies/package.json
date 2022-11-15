@@ -11,6 +11,7 @@
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "firebase": "^9.13.0",
+        "gh-pages": "^4.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.38.0",
@@ -21,6 +22,8 @@
     },
     "scripts": {
         "start:ci": "start-server-and-test 'http-server ./build  -p 3000 -P http://localhost:3000?' 3000 'cypress run --browser chrome '",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
@@ -33,16 +36,14 @@
             "react-app",
             "react-app/jest"
         ],
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
+        "overrides": [{
+            "files": [
+                "**/*.stories.*"
+            ],
+            "rules": {
+                "import/no-anonymous-default-export": "off"
             }
-        ]
+        }]
     },
     "browserslist": {
         "production": [
@@ -73,5 +74,6 @@
         "prop-types": "^15.8.1",
         "start-server-and-test": "^1.14.0",
         "webpack": "^5.74.0"
-    }
+    },
+    "homepage": "https://myusername.github.io/my-app"
 }
