@@ -15,6 +15,8 @@ This is a web application to display many movies and their information for movie
 + Full caching support
 + New Material UI components
 + Create a generic detail page so that I can easily add detail pages not only movie and company detail page
++ Code splitting
++ Continuous Integration
 
 ## Setup requirements.
 
