@@ -37,3 +37,8 @@ Cypress.Commands.add("register", (email, password) => {
     cy.get("#password").clear().type(password);
     cy.get("#Register").click();
 })
+
+Cypress.Commands.add("ReviewPage", () => {
+    cy.get("#ReviewButton").click()
+    cy.get("a[name='FullReview']").eq(0).click();
+})
