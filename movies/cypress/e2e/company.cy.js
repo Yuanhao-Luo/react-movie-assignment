@@ -5,8 +5,8 @@ describe("Company", () => {
     before(() => {
         cy.request(
                 `https://api.themoviedb.org/3/discover/movie?api_key=${Cypress.env(
-        "TMDB_KEY"
-      )}&language=en-US&include_adult=false&include_video=false&page=1`
+                    "TMDB_KEY"
+                  )}&language=en-US&include_adult=false&include_video=false&page=1`
             )
             .its("body")
             .then((response) => {
@@ -17,7 +17,8 @@ describe("Company", () => {
         cy.visit("/");
     });
     describe("From a movie detail to a production company detail", () => {
-        before(() => {
+        before(() => {});
+        beforeEach(() => {
             cy.request(
                     `https://api.themoviedb.org/3/movie/${movies[1].id}?api_key=${Cypress.env("TMDB_KEY")}`
                 )
@@ -25,8 +26,6 @@ describe("Company", () => {
                 .then((movieDetails) => {
                     movie = movieDetails;
                 });
-        });
-        beforeEach(() => {
             cy.visit(`/movies/${movies[1].id}`);
 
         })

@@ -1,3 +1,5 @@
+import "../support/commands"
+
 let movies;
 let movieReviews;
 
@@ -24,8 +26,7 @@ describe("Reviews", () => {
             cy.get("th").contains("More");
         })
         it("Jump to full review page after chlicking full review", () => {
-            cy.get("#ReviewButton").click()
-            cy.get("a[name='FullReview']").eq(0).click();
+            cy.ReviewPage()
             cy.url().should("include", "reviews");
         })
     })
@@ -44,8 +45,7 @@ describe("Reviews", () => {
             cy.get("td").contains(movieReviews[0].content.substring(0, 10))
         })
         it("The content of review in full review page is correct", () => {
-            cy.get("#ReviewButton").click()
-            cy.get("a[name='FullReview']").eq(0).click();
+            cy.ReviewPage()
             cy.get("p").contains(movieReviews[0].content.substring(0, 10))
 
         })
